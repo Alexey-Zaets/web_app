@@ -99,7 +99,7 @@ class TagPageView(TemplateView, TagMixin):
 			raise Http404
 		return context
 
-class AuthorPostsView(TamplateView, TagMixin):
+class AuthorPostsView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
