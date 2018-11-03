@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 # Create your models here.
-file_storage = FileSystemStorage(location='web_app/media')
+file_storage = FileSystemStorage(location='media')
 
 class Author(models.Model):
 	name = models.CharField(max_length=63)
