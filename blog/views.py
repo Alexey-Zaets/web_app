@@ -32,16 +32,17 @@ class TagMixin:
 	def mix(self):
 		return {'authors': self.authors, 'tags': self.tags}
 
-class HomePageView(View, TagMixin):
+class HomePageView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'index.html'
 
-	def get(self, request):
+	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		context = super().mix()
+		context = super().get_context_data(**kwargs)
+		context.update(super().mix())
 		context.update(listing(self.request, Post.objects.all()))
-		return render(self.request, self.template_name, context)
+		return context
 
 class AboutPageView(View):
 	http_method_names = ['get']
@@ -50,28 +51,29 @@ class AboutPageView(View):
 	def get(self, request):
 		return render(self.request, self.template_name, {})
 
-class PostPageView(View):
+class PostPageView(TemplateView):
 	http_method_names = ['get']
 	template_name = 'post.html'
 
-	def get(self, request):
-		id = self.request.GET['id']
-		context={}
+	def get_context_data(self, **kwargs):
+		id = kwargs['id']
+		context = super().get_context_data(**kwargs)
 		try:
 			context['post'] = Post.objects.get(id=id)
-			return render(self.request, self.template_name, context)
+			return context
 		except Post.DoesNotExist:
 			raise Http404
 
-class SearchPageView(View, TagMixin):
+class SearchPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
-	def get(self, request):
+	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		search = self.request.GET['search']
-		context = super().mix()
+		search = kwargs['search']
+		context = super().get_context_data(**kwargs)
+		context.update(super().mix())
 		if search == '':
 			context['posts'] = None
 		else:
@@ -81,7 +83,7 @@ class SearchPageView(View, TagMixin):
 				context.update(listing(self.request, query_set))
 			except AssertionError:
 				context['posts'] = False
-		return render(self.request, self.template_name, context)
+		return context
 
 class TagPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
