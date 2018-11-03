@@ -71,7 +71,7 @@ class SearchPageView(TemplateView, TagMixin):
 	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		search = kwargs['search']
+		search = self.request.GET['search']
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		if search == '':
