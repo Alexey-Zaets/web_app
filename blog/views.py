@@ -40,7 +40,7 @@ class HomePageView(TemplateView, TagMixin):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
 		context = super().get_context_data(**kwargs)
-		context.update(super().mix())
+		context.update(TagMixin.mix(self))
 		context.update(listing(self.request, Post.objects.all()))
 		return context
 
@@ -73,7 +73,7 @@ class SearchPageView(TemplateView, TagMixin):
 			self.template_name = 'item.html'
 		search = kwargs['search']
 		context = super().get_context_data(**kwargs)
-		context.update(super().mix())
+		context.update(TagMixin.mix(self))
 		if search == '':
 			context['posts'] = None
 		else:
@@ -94,6 +94,7 @@ class TagPageView(TemplateView, TagMixin):
 			self.template_name = 'item.html'
 		tag = kwargs['tag']
 		context = super().get_context_data(**kwargs)
+		context.update(TagMixin.mix(self))
 		try:
 			assert(Post.objects.filter(tags__title=tag).exists())
 			context.update(listing(self.request, Post.objects.filter(tags__title=tag)))
@@ -110,6 +111,7 @@ class AuthorPostsView(TemplateView, TagMixin):
 			self.template_name = 'item.html'
 		author = kwargs['author']
 		context = super().get_context_data(**kwargs)
+		context.update(TagMixin.mix(self))
 		try:
 			query_set = Post.objects.filter(author__name=author)
 			assert(query_set.exists())
