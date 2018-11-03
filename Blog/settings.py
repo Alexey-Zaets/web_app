@@ -150,7 +150,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/web_app/debug.log',
+            'filename': 'web_app/debug.log',
         },
     },
     'loggers' : {
