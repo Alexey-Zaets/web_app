@@ -1,5 +1,6 @@
 from django.http import Http404
-from django.views.generic.base import TemplateView
+from django.shortcuts import render
+from django.views.generic.base import View
 from blog.models import Post, Tag, Author
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -31,48 +32,46 @@ class TagMixin:
 	def mix(self):
 		return {'authors': self.authors, 'tags': self.tags}
 
-class HomePageView(TemplateView, TagMixin):
+class HomePageView(View, TagMixin):
 	http_method_names = ['get']
 	template_name = 'index.html'
 
-	def get_context_data(self, **kwargs):
+	def get(self, request):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		context = super().get_context_data(**kwargs)
+		context = super().mix()
 		context.update(listing(self.request, Post.objects.all()))
-		context.update(super().mix())
-		return context
+		return render(self.request, self.template_name, context)
 
-class AboutPageView(TemplateView):
+class AboutPageView(View):
 	http_method_names = ['get']
 	template_name = 'about.html'
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		return context
+	def get(self, request):
+		return render(self.request, self.template_name, {})
 
-class PostPageView(TemplateView):
+class PostPageView(View):
 	http_method_names = ['get']
 	template_name = 'post.html'
 
-	def get_context_data(self, **kwargs):
-		id = kwargs['id']
-		context = super().get_context_data(**kwargs)
+	def get(self, request):
+		id = self.request.GET['id']
+		context={}
 		try:
 			context['post'] = Post.objects.get(id=id)
+			return render(self.request, self.template_name, context)
 		except Post.DoesNotExist:
 			raise Http404
-		return context
 
-class SearchPageView(TemplateView, TagMixin):
+class SearchPageView(View, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
-	def get_context_data(self, **kwargs):
+	def get(self, request):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
 		search = self.request.GET['search']
-		context = super().get_context_data(**kwargs)
+		context = super().mix()
 		if search == '':
 			context['posts'] = None
 		else:
@@ -82,40 +81,37 @@ class SearchPageView(TemplateView, TagMixin):
 				context.update(listing(self.request, query_set))
 			except AssertionError:
 				context['posts'] = False
-		context.update(super().mix())
-		return context
+		return render(self.request, self.template_name, context)
 
-class TagPageView(TemplateView, TagMixin):
+class TagPageView(View, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
-	def get_context_data(self, **kwargs):
+	def get(self, request):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		tag = kwargs['tag']
-		context = super().get_context_data(**kwargs)
+		tag = self.request.GET['tag']
+		context = super().mix()
 		try:
 			assert(Post.objects.filter(tags__title=tag).exists())
 			context.update(listing(self.request, Post.objects.filter(tags__title=tag)))
 		except AssertionError:
 			raise Http404
-		context.update(super().mix())
-		return context
+		return render(self.request, self.template_name, context)
 
-class AuthorPostsView(TemplateView, TagMixin):
+class AuthorPostsView(View, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
-	def get_context_data(self, **kwargs):
+	def get(self, request):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
-		author = kwargs['author']
-		context = super().get_context_data(**kwargs)
+		author = self.request.GET['author']
+		context = super().mix()
 		try:
 			query_set = Post.objects.filter(author__name=author)
 			assert(query_set.exists())
 			context.update(listing(self.request,query_set))
 		except AssertionError:
 			raise Http404
-		context.update(super().mix())
-		return context
+		return render(self.request, self.template_name, context)
