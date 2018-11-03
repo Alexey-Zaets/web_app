@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "/style.css" %}">
+</head>
+<body>
+    <div class="menu">
+        <div class="left"><a href="/"><h2>Главная</h2></a></div>
+        <div class="right"><h2>О проекте</h2></div>
+    </div>
+    <div class="image">
+    </div>
+    <div class="content">
+        <div class="container">
+            {% block container %}
+            {% for post in posts %}
+            <div class="item" data-id="{{ post.id }}">
+                <!--<div class="hidden">
+                    <h3>{{ post.title }}</h3>
+                    <div class="description">
+                        <p>There must be a post description</p>
+                    </div>
+                    <div class="foot">
+                        <div><h4>Views</h4></div>
+                        <div><h4>Likes</h4></div>
+                    </div>
+                </div>-->
+                <img src="{{ MEDIA_URL }}{{ post.image }}" height="300" width="300">
+                <div class="post_title"><p>{{ post.title }}</p></div>
+                <script type="text/javascript">
+                    $('.item').on('mouseenter', function(event) {
+                        $(event.currentTarget).addClass('shadow');
+                    }).on('mouseleave', function(event) {
+                        $(event.currentTarget).removeClass('shadow');
+                    });
+                </script>
+            </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
+        <div class="right_container">
+            <div class="form">
+                <form action="/search/" method="GET">
+                    <input type="search" style="font-family: 'Prosto One', cursive;" placeholder="Поиск по названию" name="search"/>
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div class="tags"><h4>По категориям</h4>
+            {% for tag in tags %}
+                <div>
+                    <a href="/tag/{{ tag.title }}"><p>#{{ tag.title }}</p></a>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="tags"><h4>По авторам</h4>
+            {% for author in authors %}
+                <div>
+                    <a href="/author/{{ author.name }}"><p>#{{ author.name }}</p></a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="pagination" data-url="{{ paginator.baseurl }}" data-numpages="{{ paginator.num_pages }}">
+        <!--<div class="step-links">
+            <div>
+                {% if page.has_previous %}
+                <a href="{{ paginator.baseurl }}{{ page.prev_page_number }}">previous page</a>
+                {% endif %}
+            </div>
+            <div>
+                {% if page.has_next %}
+                <a href="{{ paginator.baseurl }}{{ page.next_page_number }}">next page</a>
+                {% endif %}
+            </div>
+        </div>-->
+    </div>
+    <div class="footer"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static "/main.js" %}"></script>
+</body>
+</html>

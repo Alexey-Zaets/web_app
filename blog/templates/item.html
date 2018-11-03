@@ -1,0 +1,13 @@
+{% for post in posts %}
+<div class="item" data-id="{{ post.id }}">
+    <img src="{{ MEDIA_URL }}{{ post.image }}" height="300" width="300">
+    <div class="post_title"><p>{{ post.title }}</p></div>
+    <script type="text/javascript">
+    	$('.item').on('mouseenter', function(event) {
+			$(event.currentTarget).addClass('shadow');
+		}).on('mouseleave', function(event) {
+			$(event.currentTarget).removeClass('shadow');
+		});
+    </script>
+</div>
+{% endfor %}
