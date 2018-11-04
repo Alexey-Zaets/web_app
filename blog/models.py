@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from cloudinary.models import CloudinaryField
 # Create your models here.
 file_storage = FileSystemStorage(location='media')
 
@@ -32,7 +33,7 @@ class Post(models.Model):
 	status = models.ForeignKey(Status, on_delete=models.CASCADE)
 	title = models.CharField(max_length=127)
 	content = models.OneToOneField(PostContent, on_delete=models.CASCADE)
-	image = models.ImageField(blank=False, null=False, storage=file_storage)
+	image = CloudinaryField('image')
 	pub_date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
