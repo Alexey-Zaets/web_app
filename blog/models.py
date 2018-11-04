@@ -30,7 +30,7 @@ class Post(models.Model):
 	status = models.ForeignKey(Status, on_delete=models.CASCADE)
 	title = models.CharField(max_length=127)
 	content = models.OneToOneField(PostContent, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to='images/')
+	image = models.ImageField(upload_to='media/')
 	pub_date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
