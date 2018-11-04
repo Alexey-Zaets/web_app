@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'cloudinary_storage',
     'cloudinary',
 ]
 
@@ -92,7 +93,11 @@ except:
         }
     }
 
-CLOUDINARY_URL = os.environ['CLOUDINARY_URL']
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ['CLOUD_NAME'],
+    'API_KEY': os.environ['CLOUD_KEY'],
+    'API_SECRET': os.environ['CLOUD_SECRET'],
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -142,9 +147,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'),)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LOGGING = {
     'version': 1,
