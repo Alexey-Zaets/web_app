@@ -1,6 +1,6 @@
 {% for post in posts %}
 <div class="item" data-id="{{ post.id }}">
-    <img src="{{post_model_instance.image.url}}" height="300" width="300">
+    <img src="{{post.image.url}}" height="300" width="300">
     <div class="post_title"><p>{{ post.title }}</p></div>
     <script type="text/javascript">{{csrf_token}}
     	$('.item').on('mouseenter', function(event) {
