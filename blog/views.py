@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 from blog.models import Post, Tag, Author
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.cache import cache
 
 # Create your views here.
 def listing(request, query_set):
