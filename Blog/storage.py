@@ -1,4 +1,5 @@
 from whitenoise.storage import CompressedManifestStaticFilesStorage
+from django.contrib.staticfiles.storage import ManifestFilesMixin
 
 class WhiteNoiseStaticFilesStorage(CompressedManifestStaticFilesStorage):
-    manifest_strict = False 
+    ManifestFilesMixin.manifest_strict = False 
