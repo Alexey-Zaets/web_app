@@ -6,11 +6,11 @@ $(document).on('click', '.item', function() {
 	permission = false;
 });
 
-/*$('.item').on('mouseenter', function(event) {
+$('.item').on('mouseenter', function(event) {
 	$(event.currentTarget).addClass('shadow');
 }).on('mouseleave', function(event) {
 	$(event.currentTarget).removeClass('shadow');
-});*/
+});
 
 $(document).on('click', '.right', function() {
 	$('.container').load('/about/');
