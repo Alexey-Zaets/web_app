@@ -30,13 +30,13 @@
                 <img src="{{post.image.url}}" height="300" width="300">
                 <div class="post_title"><p>{{ post.title }}</p></div>
                 {%csrf_token%}
-                <script type="text/javascript">
+                <!--<script type="text/javascript">
                     $('.item').on('mouseenter', function(event) {
                         $(event.currentTarget).addClass('shadow');
                     }).on('mouseleave', function(event) {
                         $(event.currentTarget).removeClass('shadow');
                     });
-                </script>
+                </script>-->
             </div>
             {% endfor %}
             {% endblock %}
