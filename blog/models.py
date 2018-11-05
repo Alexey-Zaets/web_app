@@ -22,7 +22,7 @@ class PostContent(models.Model):
 	text = models.TextField()
 
 	def __str__(self):
-		return '{}'.format(self.id)
+		return self.text
 
 class Post(models.Model):
 	author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
