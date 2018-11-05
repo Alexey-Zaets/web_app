@@ -103,7 +103,7 @@ CACHES = {
     'default':{
         'BACKEND': "redis_cache.RedisCache",
         'LOCATION': os.environ['REDIS_URL'],
-        'TIMEOUT': 60 * 60,
+        'TIMEOUT': 60 * 30,
     }
 }
 # Password validation
