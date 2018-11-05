@@ -8,3 +8,4 @@ whitenoise==4.1
 cloudinary==1.14.0
 django-cloudinary-storage==0.2.3
 django-redis-cache==1.7.1
+django-heroku==0.3.1
