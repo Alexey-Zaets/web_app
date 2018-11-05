@@ -27,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #os.environ['DEBUG']
 
-ALLOWED_HOSTS = ['lit-gorge-59056.herokuapp.com', '0.0.0.0']
+ALLOWED_HOSTS = ['lit-gorge-59056.herokuapp.com', "91.213.59.21"]
 
 
 # Application definition
