@@ -17,27 +17,8 @@
             {% block container %}
             {% for post in posts %}
             <div class="item" data-id="{{ post.id }}">
-                <!--<div class="hidden">
-                    <h3>{{ post.title }}</h3>
-                    <div class="description">
-                        <p>There must be a post description</p>
-                    </div>
-                    <div class="foot">
-                        <div><h4>Views</h4></div>
-                        <div><h4>Likes</h4></div>
-                    </div>
-                </div>-->
                 <img src="{{post.image.url}}" height="300" width="300">
                 <div class="post_title"><p>{{ post.title }}</p></div>
-                {%csrf_token%}
-                <!--<script type="text/javascript">
-                    $('.item').on('mouseenter', function(event) {
-                        $(event.currentTarget).addClass('shadow');
-                    }).on('mouseleave', function(event) {
-                        $(event.currentTarget).removeClass('shadow');
-                    });
-                </script>-->
-            </div>
             {% endfor %}
             {% endblock %}
         </div>
