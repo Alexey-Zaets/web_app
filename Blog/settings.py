@@ -101,7 +101,7 @@ CLOUDINARY_STORAGE = {
 
 CACHES = {
     'default':{
-        'BACKEND': "django_redis.cache.RedisCache",
+        'BACKEND': "redis_cache.RedisCache",
         'LOCATION': os.environ['REDIS_URL'],
         'TIMEOUT': 60 * 60,
     }
