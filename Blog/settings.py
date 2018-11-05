@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import dj_database_url
 import django_heroku
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os.environ['DEBUG']
+DEBUG = False #os.environ['DEBUG']
 
 ALLOWED_HOSTS = ['lit-gorge-59056.herokuapp.com', "91.213.59.21"]
 
@@ -157,6 +159,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+sentry_sdk.init(
+    dsn="https://6c18be3eecc84813892b5abf1af3d93a@sentry.io/1316161",
+    integrations=[DjangoIntegration()]
+)
 
 LOGGING = {
     'version': 1,
