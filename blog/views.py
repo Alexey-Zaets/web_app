@@ -59,10 +59,16 @@ class PostPageView(TemplateView):
 		id = kwargs['id']
 		context = super().get_context_data(**kwargs)
 		try:
-			context['post'] = Post.objects.get(id=id)
-			return context
+			post = Post.objects.get(id=id)
 		except Post.DoesNotExist:
 			raise Http404
+		name = post.title
+		content = cache.get(name)
+		if content is None:
+			content = post.content
+			cache.set(name, content)
+		context.update({'post':post, 'content':content})
+		return context
 
 class SearchPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
