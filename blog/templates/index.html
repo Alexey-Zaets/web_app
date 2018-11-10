@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    {% load static from staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static "/style.css" %}">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "/staticfiles/style.css" %}">
 </head>
 <body>
     <div class="menu">
@@ -63,6 +63,6 @@
     <div class="footer"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
     crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static "/main.js" %}"></script>
+    <script type="text/javascript" src="{% static "/staticfiles/main.js" %}"></script>
 </body>
 </html>
