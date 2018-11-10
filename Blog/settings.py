@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #os.environ['DEBUG']
+DEBUG = True #os.environ['DEBUG']
 
 ALLOWED_HOSTS = ['lit-gorge-59056.herokuapp.com', "91.213.59.21"]
 
@@ -165,7 +165,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'utils.DjsManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
