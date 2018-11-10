@@ -1,5 +1,5 @@
 .env
-/staticfiles/admin/
+/static/admin/
 cloudinary.yml
 /static/admin/
 *.pyc
