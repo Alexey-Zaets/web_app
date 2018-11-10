@@ -89,7 +89,7 @@ except:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ['DB_NAME'],
             'USER': os.environ['DB_USER'],
-            'PASSWORD': os.environ['PASSWORD'],
+            'PASSWORD': os.environ['DB_PASSWORD'],
             'HOST': os.environ['DB_HOST'],
             'PORT': os.environ['DB_PORT'],
         }
@@ -100,6 +100,7 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.environ['CLOUD_KEY'],
     'API_SECRET': os.environ['CLOUD_SECRET'],
 }
+
 try:
     CACHES = {
         'default':{
