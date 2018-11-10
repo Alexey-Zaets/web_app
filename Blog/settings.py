@@ -100,14 +100,22 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.environ['CLOUD_KEY'],
     'API_SECRET': os.environ['CLOUD_SECRET'],
 }
-
-CACHES = {
-    'default':{
-        'BACKEND': "redis_cache.RedisCache",
-        'LOCATION': os.environ['REDIS_URL'],
-        'TIMEOUT': 60 * 30,
+try:
+    CACHES = {
+        'default':{
+            'BACKEND': "redis_cache.RedisCache",
+            'LOCATION': os.environ['REDIS_URL'],
+            'TIMEOUT': 60 * 30,
+        }
     }
-}
+except:
+    CACHES = {
+        'default':{
+            'BACKEND': "redis_cache.RedisCache",
+            'LOCATION': '127.0.0.1:637',
+            'TIMEOUT': 60 * 30,
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -143,7 +151,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
@@ -151,6 +158,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
