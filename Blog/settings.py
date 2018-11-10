@@ -165,7 +165,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-STATICFILES_STORAGE = 'utils.DjsManifestStaticFilesStorage'
+STATICFILES_STORAGE = '.utils.DjsManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
