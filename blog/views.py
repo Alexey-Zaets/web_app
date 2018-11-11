@@ -21,9 +21,9 @@ def listing(request, query_set):
 	else:
 		paginator.baseurl = request.path
 	return {
-	'posts': page.object_list,
-	'page': page,
-	'paginator': paginator,
+		'posts': page.object_list,
+		'page': page,
+		'paginator': paginator,
 	}
 
 class TagMixin:
@@ -41,6 +41,16 @@ class HomePageView(TemplateView, TagMixin):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
 		context = super().get_context_data(**kwargs)
+		url = "https://fonts.googleapis.com/css?family="
+		font = "Merriweather|Montserrat|Noto+Sans|Poiret+One|Prosto+One"
+		href_one = url + font
+		href = "https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		context.update(
+			{
+				'href_one': href_one,
+				'href_two': href_two,
+			}
+		)
 		context.update(TagMixin.mix(self))
 		context.update(listing(self.request, Post.objects.all()))
 		return context
