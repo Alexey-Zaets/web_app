@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather|Montserrat:300|Noto+Sans|Poiret+One|Prosto+One");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+
+body{
+    display: block;
+    margin: 20px 40px 0px 40px;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    font-family: 'Prosto One', cursive;
+}
+
+.left{
+    display: inline-block;
+}
+
+.right{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.menu h2{
+    display: inline-block;
+    font-family: 'Prosto One', cursive;
+    color: black;
+    margin: 0px;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.image{
+    display: block;
+    width: 100%;
+    height: 350px;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+.content{
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    width: 70%;
+    flex-wrap: wrap;
+}
+
+.pagination{
+    display: none;
+}
+
+.right_container{
+    width: 30%;
+    position: sticky;
+    top: 20px;
+    align-self: stretch;
+    background-color: black;
+}
+
+.item{
+    display: block;
+    cursor: pointer;
+    height: 300px;
+    width: 300px;
+    margin: 0px 20px 20px 10px;
+    box-shadow: 5px 5px 15px lightgray;
+}
+
+.shadow{
+    display: block;
+    cursor: pointer;
+    height: 300px;
+    width: 300px;
+    margin: 0px 20px 20px 10px;
+    box-shadow: 10px 10px 20px lightgray;
+}
+
+.post_title{
+    display: block;
+    position: relative;
+    top: -40px;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    background-color: white;
+    font-family: 'Prosto One', cursive;
+}
+
+.form{
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+}
+
+.form input {
+    height: 44px;
+    width: 100%;
+    padding-left: 10px;
+    border: thin outset lightgray;
+    outline: none;
+}
+
+.form button {
+    height: 44px;
+    width: 44px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: black;
+    border: none;
+    outline: none;
+}
+
+.form button:before {
+    content: "\f105";
+    font-family: FontAwesome;
+    color: #F9F0DA;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tags{
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
+
+.tags h4, .tags p{
+    color: white;
+    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: 'Prosto One', cursive;
+}
+
+.tags div{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/*.tags h4{
+    color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-family: 'Poiret One', cursive;
+}*/
+
+.article{
+    display: block;
+    width: 100%;
+    height: inherit;
+    margin-right: 15px;
+    box-shadow: 5px 5px 15px lightgray;
+    border-radius: 2px;
+    padding: 0px 5px 0px 5px;
+}
+
+.title h2{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0px;
+    text-align: center;
+    font-family: 'Prosto One', cursive;
+    color: black;
+}
+
+hr{
+    margin-top: 0px;
+    color: lightgray;
+}
+
+.article_text{
+    display: block;
+    width: 100%;
+    color: black;
+}
+
+.article .foot h3{
+    display: inline-block;
+    color: black;
+    margin: 0px;
+}
+
+.article .foot{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    font-family: 'Prosto One', cursive;
+    padding: 0px 5px 0px 5px;
+}
+
+.footer{
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    margin-top: 20px;
+}
