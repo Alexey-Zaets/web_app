@@ -44,7 +44,7 @@ class HomePageView(TemplateView, TagMixin):
 		url = "https://fonts.googleapis.com/css?family="
 		font = "Merriweather|Montserrat|Noto+Sans|Poiret+One|Prosto+One"
 		href_one = url + font
-		href = "https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		href_two = "https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		context.update(
 			{
 				'href_one': href_one,
