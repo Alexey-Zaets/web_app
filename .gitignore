@@ -5,7 +5,7 @@ cloudinary.yml
 *.pyc
 /Blog/__pycache__/
 /blog/__pycache__/
-/blog/migrations/
+/blog/migrations/__pycache__/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
