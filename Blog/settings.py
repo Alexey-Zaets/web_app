@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '62-f_d+hd0xrabjc6f@%7^0gpgs8x(*-^l^*%xo2yc)%5%sted' #os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #os.environ['DEBUG']
@@ -87,20 +87,20 @@ except:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['DB_NAME'],
-            'USER': os.environ['DB_USER'],
-            'PASSWORD': os.environ['DB_PASSWORD'],
-            'HOST': os.environ['DB_HOST'],
-            'PORT': os.environ['DB_PORT'],
+            'NAME': 'zaets', #os.environ['DB_NAME'],
+            'USER': 'zaets', #os.environ['DB_USER'],
+            'PASSWORD': 'zaets2262826', #os.environ['DB_PASSWORD'],
+            'HOST': '127.0.0.1', #os.environ['DB_HOST'],
+            'PORT': '5432', #os.environ['DB_PORT'],
         }
     }
-
+'''
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ['CLOUD_NAME'],
     'API_KEY': os.environ['CLOUD_KEY'],
     'API_SECRET': os.environ['CLOUD_SECRET'],
 }
-
+'''
 try:
     CACHES = {
         'default':{
@@ -161,7 +161,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'blog/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
