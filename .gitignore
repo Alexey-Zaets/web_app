@@ -1,7 +1,5 @@
 .env
 cloudinary.yml
-/static/admin/fonts/
-/staticfiles/admin/
 *.pyc
 /Blog/__pycache__/
 /blog/__pycache__/
