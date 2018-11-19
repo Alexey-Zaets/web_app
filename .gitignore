@@ -2,7 +2,7 @@
 cloudinary.yml
 *.pyc
 Blog/base_settings.py
-settings/local.py
+Blog/settings/local.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
