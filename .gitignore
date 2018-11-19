@@ -1,9 +1,8 @@
 .env
 cloudinary.yml
 *.pyc
-/Blog/__pycache__/
-/blog/__pycache__/
-/blog/migrations/__pycache__/
+Blog/base_settings.py
+Blog/settings/local.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
