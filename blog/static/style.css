@@ -103,6 +103,10 @@ p{
     font-family: 'Prosto One', cursive;
 }
 
+.post_title p{
+    margin: 0px 0px 0px 0px;
+}
+
 .form{
     box-sizing: border-box;
     position: relative;
