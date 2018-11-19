@@ -47,8 +47,6 @@ class HomePageView(TemplateView, TagMixin):
 	template_name = 'index.html'
 
 	def get_context_data(self, **kwargs):
-		if self.request.is_ajax():
-			self.template_name = 'item.html'
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		context.update(listing(self.request, Post.objects.all()))
