@@ -190,16 +190,16 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        #'django.template': {
-            #'handlers': ['file'],
-            #'level': 'DEBUG',
-            #'propagate': True,
-        #},
-        #'django.db.backends':{
-            #'handlers':['file'],
-            #'level': 'DEBUG',
-            #'propagate': True,
-        #},
+        'django.template': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends':{
+            'handlers':['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }
 
