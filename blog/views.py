@@ -9,7 +9,7 @@ from django.core.cache import cache
 def listing(request, query_set):
 	page = request.GET.get('page', 1)
 	search = request.GET.get('search', None)
-	paginator = Paginator(query_set, 3)
+	paginator = Paginator(query_set, 6)
 	try:
 		page = paginator.page(page)
 	except PageNotAnInteger:
@@ -29,17 +29,11 @@ def listing(request, query_set):
 class TagMixin:
 	authors = Author.objects.all()
 	tags = Tag.objects.all()
-	url = "https://fonts.googleapis.com/css?family="
-	font = "Merriweather|Montserrat|Noto+Sans|Poiret+One|Prosto+One"
-	href_one = url + font
-	href_two = "https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 
 	def mix(self):
 		return {
 			'authors': self.authors,
 			'tags': self.tags,
-			'href_one': self.href_one,
-			'href_two': self.href_two,
 			}
 
 class HomePageView(TemplateView, TagMixin):
