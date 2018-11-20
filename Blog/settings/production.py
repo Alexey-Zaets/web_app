@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #os.environ['DEBUG']
+DEBUG = False 
 
 ALLOWED_HOSTS = ['lit-gorge-59056.herokuapp.com']
 

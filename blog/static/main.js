@@ -1,4 +1,4 @@
-var permission = true
+/*var permission = true
 
 $(document).on('click', '.item', function() {
 	var post_id = $(this).data('id');
@@ -15,7 +15,7 @@ $('.item').on('mouseenter', function(event) {
 $(document).on('click', '.right', function() {
 	$('.container').load('/about/');
 	permission = false;
-});
+});*/
 
 $(document).ready(function() {
 	var page = 2;

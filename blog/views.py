@@ -44,9 +44,11 @@ class TagMixin:
 
 class HomePageView(TemplateView, TagMixin):
 	http_method_names = ['get']
-	template_name = 'index.html'
+	template_name = 'index1.html'
 
 	def get_context_data(self, **kwargs):
+		if self.request.is_ajax():
+			self.template_name = 'item1.html'
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		context.update(listing(self.request, Post.objects.all()))
@@ -83,6 +85,8 @@ class SearchPageView(TemplateView, TagMixin):
 	template_name = 'search_result.html'
 
 	def get_context_data(self, **kwargs):
+		if self.request.is_ajax():
+			self.template_name = 'item.html'
 		search = self.request.GET['search']
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
@@ -102,6 +106,8 @@ class TagPageView(TemplateView, TagMixin):
 	template_name = 'search_result.html'
 
 	def get_context_data(self, **kwargs):
+		if self.request.is_ajax():
+			self.template_name = 'item.html'
 		tag = kwargs['tag']
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
@@ -117,6 +123,8 @@ class AuthorPostsView(TemplateView, TagMixin):
 	template_name = 'search_result.html'
 
 	def get_context_data(self, **kwargs):
+		if self.request.is_ajax():
+			self.template_name = 'item.html'
 		author = kwargs['author']
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
