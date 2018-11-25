@@ -26,6 +26,7 @@ class PostContent(models.Model):
 
 class Post(models.Model):
 	author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
+	description = models.CharField(max_length=250, blank=False)
 	tags = models.ManyToManyField(Tag)
 	status = models.ForeignKey(Status, on_delete=models.CASCADE)
 	title = models.CharField(max_length=127)
@@ -35,6 +36,10 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	@property
+	def not_even(self):
+		return self.id%2!=0
 
 	class Meta:
 		ordering = ['-pub_date']

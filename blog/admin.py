@@ -4,7 +4,7 @@ from .models import Post, Author, Tag, PostContent, Status
 class PostAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Post tags', {'fields':['tags', 'status']}),
-		('Post content', {'fields':['title', 'content', 'image', 'author']})
+		('Post content', {'fields':['title', 'description', 'content', 'image', 'author']})
 	]
 	ordering = ['title']
 	list_display = ['title', 'author']

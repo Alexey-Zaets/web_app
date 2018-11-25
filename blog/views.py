@@ -38,7 +38,7 @@ class TagMixin:
 
 class HomePageView(TemplateView, TagMixin):
 	http_method_names = ['get']
-	template_name = 'index1.html'
+	template_name = 'index.html'
 
 	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
@@ -55,7 +55,14 @@ class AboutPageView(View):
 	def get(self, request):
 		return render(self.request, self.template_name, {})
 
-class PostPageView(TemplateView):
+class ContactPageView(View):
+	http_method_names = ['get']
+	template_name = 'contact.html'
+
+	def get(self, request):
+		return render(self.request, self.template_name, {})
+
+class PostPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'post.html'
 
@@ -72,6 +79,7 @@ class PostPageView(TemplateView):
 			content = post.content
 			cache.set(name, content)
 		context.update({'post':post, 'content':content})
+		context.update(TagMixin.mix(self))
 		return context
 
 class SearchPageView(TemplateView, TagMixin):

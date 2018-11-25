@@ -1,57 +1,276 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    {% load staticfiles %}
-    <link href="{{ href_one }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ href_two }}" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Milø</title>
+
+  {% load static %}
+  <link href="{% static "blog.css" %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="{% static "icons8-console-black.png" %}" />
 </head>
 <body>
-    <div class="menu">
-        <div class="left"><a href="/"><h2>Главная</h2></a></div>
-        <div class="right"><h2>О проекте</h2></div>
-    </div>
-    <div class="image">
-    </div>
-    <div class="content">
-        <div class="container">
-            {% block container %}
+
+  <header role="banner">
+    <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+      <div class="container">
+
+        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--<div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown02">
+                <a class="dropdown-item" href="home-onecolumn.html">One column</a>
+                <a class="dropdown-item" href="home-twocolumn.html">Two column</a>
+                <a class="dropdown-item" href="home-threecolumn.html">Three column</a>
+                <a class="dropdown-item" href="home-fourcolumn.html">Four column</a>
+                <a class="dropdown-item" href="home-featured.html">Featured posts</a>
+                <a class="dropdown-item" href="home-fullwidth.html">Full width</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown02">
+                <a class="dropdown-item" href="post-image.html">Image</a>
+                <a class="dropdown-item" href="post-video.html">Video</a>
+                <a class="dropdown-item" href="post-new.html">New story</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Components</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown03">
+                <a class="dropdown-item" href="doc-typography.html">Typography</a>
+                <a class="dropdown-item" href="doc-buttons.html">Buttons</a>
+                <a class="dropdown-item" href="doc-tables.html">Tables</a>
+                <a class="dropdown-item" href="doc-forms.html">Forms</a>
+                <a class="dropdown-item" href="doc-cards.html">Cards</a>
+              </div>
+            </li>
+          </ul>
+        </div>-->
+
+        <a class="navbar-brand mx-auto order-1 order-md-3" href="/"><i class="fas fa-terminal"></i></a>
+
+        <div class="collapse navbar-collapse order-4 order-md-4" id="navbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact/">Contact</a>
+            </li>
+          </ul>
+          <form class="form-inline" role="search">
+            <input class="search js-search form-control form-control-rounded mr-sm-2" type="text" title="Enter search query here..." placeholder="Search..." aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+{% block container%}
+  <main class="main pt-4" role="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            {% block post %}
             {% for post in posts %}
-            <div class="item" data-id="{{ post.id }}">
-                <img src="{{post.image.url}}" height="300" width="300">
-                <div class="post_title">{{ post.title }}</div>
+            {% if post.not_even %}
+            <div class="col-md-6">
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="{{post.pub_date}}">{{post.pub_date}}</time></a> in <a href="page-category.html">Journey</a>
+                  </div>
+                  <a href="/post/{{post.id}}/">
+                    <h4 class="card-title">{{post.title}}</h4>
+                  </a>
+                </header>
+                <a href="/post/{{post.id}}/">
+                  <img class="card-img" src="{{post.image.url}}" alt="" />
+                </a>
+                <div class="card-body">
+                  <p class="card-text">{{post.description}}</p>
+                </div>
+              </article><!-- /.card -->
             </div>
+            {% else %}
+            <div class="col-md-6">
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="{{post.pub_date}}">{{post.pub_date}}</time></a> in <a href="page-category.html">Journey</a>
+                  </div>
+                  <a href="/post/{{post.id}}/">
+                    <h4 class="card-title">{{post.title}}</h4>
+                  </a>
+                </header>
+                <a href="/post/{{post.id}}/">
+                  <img class="card-img" src="{{post.image.url}}" alt="" />
+                </a>
+                <div class="card-body">
+                  <p class="card-text">{{post.description}}</p>
+                </div>
+              </article><!-- /.card -->
+            </div>
+            {% endif %}
             {% endfor %}
             {% endblock %}
+          </div>
         </div>
-        <div class="right_container">
-            <div class="form">
-                <form action="/search/" method="GET">
-                    <input type="search" style="font-family: 'Prosto One', cursive;" placeholder="Поиск по названию" name="search"/>
-                    <button type="submit"></button>
-                </form>
-            </div>
-            <div class="tags"><h4>По категориям</h4>
-            {% for tag in tags %}
-                <div>
-                    <a href="/tag/{{ tag.title }}"><p>#{{ tag.title }}</p></a>
-                </div>
-            {% endfor %}
-            </div>
-            <div class="tags"><h4>По авторам</h4>
-            {% for author in authors %}
-                <div>
-                    <a href="/author/{{ author.name }}"><p>#{{ author.name }}</p></a>
-                </div>
-            {% endfor %}
-            </div>
+        <div class="col-md-3 ml-auto">
+          <aside class="sidebar">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">About</h4>
+                <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam <a href="#">semper libero</a>, sit amet adipiscing sem neque sed ipsum. </p>
+              </div>
+            </div><!-- /.card -->
+          </aside>
+          <aside class="sidebar sidebar-sticky">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">Tags</h4>
+                {% for tag in tags %}
+                <a class="btn btn-light btn-sm mb-1" href="/tag/{{tag.title}}/">{{tag.title}}</a>
+                {% endfor %}
+              </div>
+            </div><!-- /.card -->
+            <!--<div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-title">Popular stories</h4>
+                <a href="post-image.html" class="d-inline-block">
+                  <h4 class="h6">The blind man</h4>
+                  <img class="card-img" src="" alt="" />
+                </a>
+                <time class="timeago" datetime="2017-10-03 20:00">3 october 2017</time> in Lifestyle
+                <a href="post-image.html" class="d-inline-block mt-3">
+                  <h4 class="h6">Crying on the news</h4>
+                  <img class="card-img" src="" alt="" />
+                </a>
+                <time class="timeago" datetime="2017-07-16 20:00">16 july 2017</time> in Work
+              </div>
+            </div><!-- /.card -->
+          </aside>
         </div>
+      </div>
     </div>
-    <div class="pagination" data-url="{{ paginator.baseurl }}" data-numpages="{{ paginator.num_pages }}"></div>
-    <div class="footer"></div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
-    crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static "main.js" %}"></script>
+  </main>
+{% endblock %}
+  <div class="site-newsletter">
+    <div class="container">
+      <div class="text-center">
+        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
+        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and promotions.</p>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
+            <div class="input-group mb-3 mt-3">
+              <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Subscribe</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-instagram">
+    <div class="action">
+      <a class="btn btn-light" href="#">
+        Follow us @ Instagram
+      </a>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-sm-6">
+        <div class="row no-gutters">
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row no-gutters">
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer bg-darkest" role="contentinfo">
+    <div class="container">
+
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Privacy policy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Terms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Advertise</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="page-contact.html">Contact</a>
+        </li>
+      </ul>
+      <div class="copy">
+        &copy; Milo 2018<br />
+        All rights reserved
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static "blog.js" %}"></script>
 </body>
 </html>

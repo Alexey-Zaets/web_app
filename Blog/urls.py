@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from blog.views import HomePageView, PostPageView, SearchPageView, TagPageView, AboutPageView, AuthorPostsView
+from blog.views import HomePageView, PostPageView, SearchPageView, \
+TagPageView, AboutPageView, AuthorPostsView, ContactPageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view()),
     path('about/', AboutPageView.as_view()),
+    path('contact/', ContactPageView.as_view()),
     path('post/<int:id>/', PostPageView.as_view()),
     path('tag/<str:tag>/', TagPageView.as_view()),
     path('author/<str:author>/', AuthorPostsView.as_view()),
