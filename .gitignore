@@ -1,7 +1,6 @@
 .env
 cloudinary.yml
 *.pyc
-staticfiles/
 Blog/base_settings.py
 Blog/settings/local.py
 # Byte-compiled / optimized / DLL files
