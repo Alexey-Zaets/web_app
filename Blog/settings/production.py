@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'blog',
+    'analytics',
 ]
 
 MIDDLEWARE = [
@@ -170,7 +171,7 @@ MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 sentry_sdk.init(
-    dsn="https://6c18be3eecc84813892b5abf1af3d93a@sentry.io/1316161",
+    dsn=os.environ['SENTRY_DSN'],
     integrations=[DjangoIntegration()]
 )
 

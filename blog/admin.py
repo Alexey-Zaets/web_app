@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Post, Author, Tag, PostContent, Status
+from analytics.models import PostStatus
+from .models import Post, Author, Tag, PostContent
 
 class PostAdmin(admin.ModelAdmin):
 	fieldsets = [
-		('Post tags', {'fields':['tags', 'status']}),
+		('Post tags', {'fields':['tags']}),
 		('Post content', {'fields':['title', 'description', 'content', 'image', 'author']})
 	]
 	ordering = ['title']
@@ -15,4 +16,4 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Author)
 admin.site.register(Tag)
 admin.site.register(PostContent)
-admin.site.register(Status)
+admin.site.register(PostStatus)
