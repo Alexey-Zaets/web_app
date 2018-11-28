@@ -42,7 +42,7 @@ class HomePageView(TemplateView, TagMixin):
 
 	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
-			self.template_name = 'item1.html'
+			self.template_name = 'item.html'
 		context = super().get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		context.update(listing(self.request, Post.objects.all()))
@@ -67,10 +67,10 @@ class PostPageView(TemplateView, TagMixin):
 	template_name = 'post.html'
 
 	def get_context_data(self, **kwargs):
-		id = kwargs['id']
+		identificator = kwargs['id']
 		context = super().get_context_data(**kwargs)
 		try:
-			post = Post.objects.get(id=id)
+			post = Post.objects.get(id=identificator)
 		except Post.DoesNotExist:
 			raise Http404
 		name = post.title
