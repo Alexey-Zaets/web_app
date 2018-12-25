@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 {% block post %}
-{% for post in posts %}
+{% for post in object_list %}
 {% if post.not_even %}
 <div class="col-md-6">
     <article class="card mb-4">

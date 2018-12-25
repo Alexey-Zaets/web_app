@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
+from django.views.generic.list import ListView
 from blog.models import Post, Tag, Author
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
@@ -36,16 +37,16 @@ class TagMixin:
 			'tags': self.tags,
 			}
 
-class HomePageView(TemplateView, TagMixin):
+class HomePageView(ListView, TagMixin):
+	model = Post
 	http_method_names = ['get']
 	template_name = 'index.html'
+	paginate_by = 6
 
 	def get_context_data(self, **kwargs):
-		if self.request.is_ajax():
-			self.template_name = 'item.html'
-		context = super().get_context_data(**kwargs)
+		print(self.__dict__)
+		context = super(HomePageView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
-		context.update(listing(self.request, Post.objects.all()))
 		return context
 
 class AboutPageView(View):
@@ -86,11 +87,14 @@ class SearchPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
+	def get_queryset(self):
+		pass
+
 	def get_context_data(self, **kwargs):
 		if self.request.is_ajax():
 			self.template_name = 'item.html'
 		search = self.request.GET['search']
-		context = super().get_context_data(**kwargs)
+		context = super(SearchPageView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		if search == '':
 			context['posts'] = None
@@ -103,32 +107,37 @@ class SearchPageView(TemplateView, TagMixin):
 				context['posts'] = False
 		return context
 
-class TagPageView(TemplateView, TagMixin):
+class TagPageView(ListView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
+	model = Post
+	paginate_by = 6
 
-	def get_context_data(self, **kwargs):
-		if self.request.is_ajax():
-			self.template_name = 'item.html'
-		tag = kwargs['tag']
-		context = super().get_context_data(**kwargs)
-		context.update(TagMixin.mix(self))
+	def get_queryset(self):
+		qs = super(TagPageView, self).get_queryset()
 		try:
-			assert(Post.objects.filter(tags__title=tag).exists())
-			context.update(listing(self.request, Post.objects.filter(tags__title=tag)))
+			assert(qs.filter(tags__title=self.kwargs['tag']))
+			return qs.filter(tags__title=self.kwargs['tag'])
 		except AssertionError:
 			raise Http404
+
+	def get_context_data(self, **kwargs):
+		print(self.__dict__)
+		context = super(TagPageView, self).get_context_data(**kwargs)
+		context.update(TagMixin.mix(self))
+		print(context)
 		return context
 
 class AuthorPostsView(TemplateView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 
+	def get_queryset(self):
+		pass
+
 	def get_context_data(self, **kwargs):
-		if self.request.is_ajax():
-			self.template_name = 'item.html'
 		author = kwargs['author']
-		context = super().get_context_data(**kwargs)
+		context = super(AuthorPostsView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		try:
 			query_set = Post.objects.filter(author__name=author)
