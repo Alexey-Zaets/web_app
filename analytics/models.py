@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
+
+
 class PostStatus(models.Model):
 	post = models.OneToOneField(Post, on_delete=models.DO_NOTHING)
 	views = models.IntegerField(default=0)
@@ -11,6 +13,7 @@ class PostStatus(models.Model):
 
 	class Meta:
 		managed = True
+
 
 @receiver(post_save, sender=Post)
 def status_create(sender, **kwargs):

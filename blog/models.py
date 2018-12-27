@@ -1,11 +1,13 @@
 from django.db import models
 # Create your models here.
 
+
 class Author(models.Model):
 	name = models.CharField(max_length=63)
 
 	def __str__(self):
 		return self.name
+
 
 class Tag(models.Model):
 	title = models.CharField(max_length=63)
@@ -13,11 +15,13 @@ class Tag(models.Model):
 	def __str__(self):
 		return self.title
 
+
 class PostContent(models.Model):
 	text = models.TextField()
 
 	def __str__(self):
 		return self.text
+
 
 class Post(models.Model):
 	author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)

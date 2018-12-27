@@ -4,11 +4,14 @@ from .models import Author, Post, Tag
 
 # Create your tests here.
 class HomePageViewTest(TestCase):
+
 	def test_view_with_no_page(self):
 		response = self.client.get('')
 		self.assertEqual(response.status_code, 200)
 
+
 class PostPageViewTest(TestCase):
+
 	def test_view_with_id(self):
 		for i in range(10):
 			url = '/post/{}/'.format(str(i))
@@ -18,7 +21,9 @@ class PostPageViewTest(TestCase):
 			else:
 				self.assertEqual(response.status_code, 404)
 
+
 class SearchPageViewTest(TestCase):
+
 	def test_search_view(self):
 		url = '/search/'
 		response = self.client.get(url, {'search': ''})
@@ -30,7 +35,9 @@ class SearchPageViewTest(TestCase):
 		response = self.client.get(url, {'search': 'python'})
 		self.assertEqual(response.status_code, 200)
 
+
 class TagPageViewTest(TestCase):
+
 	def test_tag_select(self):
 		for i in ['docker', 'javascript', 'test']:
 			url = '/tag/{}/'.format(i)
@@ -41,7 +48,9 @@ class TagPageViewTest(TestCase):
 			response = self.client.get(url)
 			self.assertEqual(response.status_code, 200)
 
+
 class AuthorPostsViewTest(TestCase):
+	
 	def test_author_select(self):
 		for i in ['Jack', 'David', 'test']:
 			url = '/author/{}/'.format(i)

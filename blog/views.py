@@ -1,31 +1,11 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
 from blog.models import Post, Tag, Author
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
+from django.core.mail import send_mail, BadHeaderError
 
-# Create your views here.
-def listing(request, query_set):
-	page = request.GET.get('page', 1)
-	search = request.GET.get('search', None)
-	paginator = Paginator(query_set, 6)
-	try:
-		page = paginator.page(page)
-	except PageNotAnInteger:
-		page = paginator.page(1)
-	except EmptyPage:
-		page = paginator.page(paginator.num_pages)
-	if search is not None:
-		paginator.baseurl = request.path + '?search=' + search
-	else:
-		paginator.baseurl = request.path
-	return {
-		'posts': page.object_list,
-		'page': page,
-		'paginator': paginator,
-	}
 
 class TagMixin:
 	authors = Author.objects.all()
@@ -44,10 +24,10 @@ class HomePageView(ListView, TagMixin):
 	paginate_by = 6
 
 	def get_context_data(self, **kwargs):
-		print(self.__dict__)
 		context = super(HomePageView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		return context
+
 
 class AboutPageView(View):
 	http_method_names = ['get']
@@ -56,12 +36,29 @@ class AboutPageView(View):
 	def get(self, request):
 		return render(self.request, self.template_name, {})
 
+
 class ContactPageView(View):
-	http_method_names = ['get']
+	http_method_names = ['get', 'post']
 	template_name = 'contact.html'
 
 	def get(self, request):
 		return render(self.request, self.template_name, {})
+
+	def post(self, request):
+		print(request.POST)
+		name = request.POST.get('name', '')
+		company = request.POST.get('company', '')
+		from_email = request.POST.get('email', '')
+		message = request.POST.get('message', '')
+		if name and company and from_email and message:
+			try:
+				send_mail(name, message, from_email, ['3aets.dev@gmail.com'])
+			except BadHeaderError:
+				return HttpResponse('Invalide header found.')
+			return HttpResponseRedirect('/contact/')
+		else:
+			return HttpResponse('Убедитесь, что все поля заполнены')
+
 
 class PostPageView(TemplateView, TagMixin):
 	http_method_names = ['get']
@@ -69,7 +66,7 @@ class PostPageView(TemplateView, TagMixin):
 
 	def get_context_data(self, **kwargs):
 		identificator = kwargs['id']
-		context = super().get_context_data(**kwargs)
+		context = super(PostPageView, self).get_context_data(**kwargs)
 		try:
 			post = Post.objects.get(id=identificator)
 		except Post.DoesNotExist:
@@ -83,29 +80,27 @@ class PostPageView(TemplateView, TagMixin):
 		context.update(TagMixin.mix(self))
 		return context
 
-class SearchPageView(TemplateView, TagMixin):
+
+class SearchPageView(ListView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
+	model = Post
+	paginate_by = 6
 
 	def get_queryset(self):
-		pass
+		qs = super(SearchPageView, self).get_queryset()
+		search = self.request.GET.get('search')
+		if search is not None:
+			qs = qs.filter(title__icontains=search)
+		return qs
 
 	def get_context_data(self, **kwargs):
-		if self.request.is_ajax():
-			self.template_name = 'item.html'
-		search = self.request.GET['search']
 		context = super(SearchPageView, self).get_context_data(**kwargs)
+		if not context['object_list'].exists():
+			context['message'] = 'По вашему запросу ничего не найдено' 
 		context.update(TagMixin.mix(self))
-		if search == '':
-			context['posts'] = None
-		else:
-			try:
-				query_set = Post.objects.filter(title__icontains=search)
-				assert(query_set.exists())
-				context.update(listing(self.request, query_set))
-			except AssertionError:
-				context['posts'] = False
 		return context
+
 
 class TagPageView(ListView, TagMixin):
 	http_method_names = ['get']
@@ -115,34 +110,35 @@ class TagPageView(ListView, TagMixin):
 
 	def get_queryset(self):
 		qs = super(TagPageView, self).get_queryset()
-		try:
-			assert(qs.filter(tags__title=self.kwargs['tag']))
-			return qs.filter(tags__title=self.kwargs['tag'])
-		except AssertionError:
-			raise Http404
+		tag = self.kwargs.get('tag')
+		if tag is not None:
+			qs = qs.filter(tags__title=tag)
+		return qs
 
 	def get_context_data(self, **kwargs):
-		print(self.__dict__)
 		context = super(TagPageView, self).get_context_data(**kwargs)
+		if not context['object_list'].exists():
+			context['message'] = 'Нет записей с таким тэгом'
 		context.update(TagMixin.mix(self))
-		print(context)
 		return context
 
-class AuthorPostsView(TemplateView, TagMixin):
+
+class AuthorPostsView(ListView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
+	model = Post
+	paginate_by = 6
 
 	def get_queryset(self):
-		pass
+		qs = super(AuthorPostsView, self).get_queryset()
+		author = self.kwargs.get('author')
+		if author is not None:
+			qs = qs.filter(author__name=author)
+		return qs
 
 	def get_context_data(self, **kwargs):
-		author = kwargs['author']
 		context = super(AuthorPostsView, self).get_context_data(**kwargs)
+		if not context['object_list'].exists():
+			context['message'] = 'Нет такого автора'
 		context.update(TagMixin.mix(self))
-		try:
-			query_set = Post.objects.filter(author__name=author)
-			assert(query_set.exists())
-			context.update(listing(self.request,query_set))
-		except AssertionError:
-			raise Http404
 		return context

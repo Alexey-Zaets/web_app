@@ -1,5 +1,8 @@
 {% extends 'index.html' %}
 {% block post %}
+{% if message %}
+<p>{{ message }}</p>
+{% else %}
 {% for post in object_list %}
 {% if post.not_even %}
 <div class="col-md-6">
@@ -41,4 +44,5 @@
 </div>
 {% endif %}
 {% endfor %}
+{% endif %}
 {% endblock %}
