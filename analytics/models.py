@@ -8,8 +8,11 @@ from django.dispatch import receiver
 
 class PostStatus(models.Model):
 	post = models.OneToOneField(Post, on_delete=models.DO_NOTHING)
-	views = models.IntegerField(default=0)
-	likes = models.IntegerField(default=0)
+	views = models.IntegerField('Просмотры', default=0)
+	likes = models.IntegerField('Лайки', default=0)
+
+	def __str__(self):
+		return self.post.title
 
 	class Meta:
 		managed = True

@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from blog.models import Post, Tag, Author
 from django.core.cache import cache
 from django.core.mail import send_mail, BadHeaderError
+from .tasks import send_contact_mail
 
 
 class TagMixin:
@@ -45,16 +46,14 @@ class ContactPageView(View):
 		return render(self.request, self.template_name, {})
 
 	def post(self, request):
-		print(request.POST)
 		name = request.POST.get('name', '')
 		company = request.POST.get('company', '')
-		from_email = request.POST.get('email', '')
+		email = request.POST.get('email', '')
 		message = request.POST.get('message', '')
-		if name and company and from_email and message:
-			try:
-				send_mail(name, message, from_email, ['3aets.dev@gmail.com'])
-			except BadHeaderError:
-				return HttpResponse('Invalide header found.')
+		if name and company and email and message:
+			result = send_contact_mail.delay(
+				name, company, email, message
+				)
 			return HttpResponseRedirect('/contact/')
 		else:
 			return HttpResponse('Убедитесь, что все поля заполнены')
@@ -71,12 +70,7 @@ class PostPageView(TemplateView, TagMixin):
 			post = Post.objects.get(id=identificator)
 		except Post.DoesNotExist:
 			raise Http404
-		name = post.title
-		content = cache.get(name)
-		if content is None:
-			content = post.content
-			cache.set(name, content)
-		context.update({'post':post, 'content':content})
+		context['post'] = post
 		context.update(TagMixin.mix(self))
 		return context
 

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'blog',
     'analytics',
+    'subscribers',
 ]
 
 MIDDLEWARE = [
