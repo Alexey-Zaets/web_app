@@ -1,6 +1,5 @@
 from django.contrib import admin
-from analytics.models import PostStatus
-from .models import Post
+from .models import Post, Tag, Author, PostContent
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -13,4 +12,7 @@ class PostAdmin(admin.ModelAdmin):
 	date_hierarchy = 'pub_date'
 	filter_horizontal = ['tags']
 
-admin.site.register(PostStatus)
+
+admin.site.register(PostContent)
+admin.site.register(Author)
+admin.site.register(Tag)

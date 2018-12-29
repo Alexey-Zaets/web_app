@@ -106,13 +106,14 @@ class TagPageView(ListView, TagMixin):
 		qs = super(TagPageView, self).get_queryset()
 		tag = self.kwargs.get('tag')
 		if tag is not None:
-			qs = qs.filter(tags__title=tag)
+			try:
+				qs = qs.filter(tags__title=tag)
+			except Post.DoesNotExist:
+				raise Http404
 		return qs
 
 	def get_context_data(self, **kwargs):
 		context = super(TagPageView, self).get_context_data(**kwargs)
-		if not context['object_list'].exists():
-			context['message'] = 'Нет записей с таким тэгом'
 		context.update(TagMixin.mix(self))
 		return context
 
@@ -127,12 +128,13 @@ class AuthorPostsView(ListView, TagMixin):
 		qs = super(AuthorPostsView, self).get_queryset()
 		author = self.kwargs.get('author')
 		if author is not None:
-			qs = qs.filter(author__name=author)
+			try:
+				qs = qs.filter(author__name=author)
+			except Post.DoesNotExist:
+				raise Http404
 		return qs
 
 	def get_context_data(self, **kwargs):
 		context = super(AuthorPostsView, self).get_context_data(**kwargs)
-		if not context['object_list'].exists():
-			context['message'] = 'Нет такого автора'
 		context.update(TagMixin.mix(self))
 		return context
