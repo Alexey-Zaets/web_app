@@ -1,4 +1,3 @@
-import asyncio
 from django.core.mail import send_mail
 from Blog.celery import app
 from blog.models import Post

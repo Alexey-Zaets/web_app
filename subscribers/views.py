@@ -9,5 +9,11 @@ class SubscribeView(View):
 
 	def post(self, request):
 		email = request.POST.get('email')
-		Subscribers.objects.create(email=email)
+		if email == '':
+			pass
+		else:
+			try:
+				Subscribers.objects.create(email=email)
+			except IntegrityError:
+				message = 'Такой email уже существует'
 		return HttpResponseRedirect('/')
