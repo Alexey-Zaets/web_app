@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from subscribers.models import Subscribers
+from .models import Subscribers
 from django.views.generic.base import View
 
 

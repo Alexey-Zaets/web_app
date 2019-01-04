@@ -1,6 +1,6 @@
 from django.core.mail import send_mail, BadHeaderError
 from django.core.cache import cache
-from blog.models import Post
+from .models import Post
 from Blog.celery import app
 
 

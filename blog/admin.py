@@ -1,19 +1,15 @@
 from django.contrib import admin
-from blog.models import Post, Tag, Author, PostContent
+from .models import Post, Tag, Author, PostContent
+
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Post tags', {'fields':['tags']}),
-		('Post content', {'fields':[
-			'title',
-			'description',
-			'content',
-			'image',
-			'author'
-			]
-		})
-	]
+		('Post content',
+			{'fields':['title','description','content','image','author']}
+			)
+		]
 	ordering = ['title']
 	list_display = ['title', 'author']
 	date_hierarchy = 'pub_date'
