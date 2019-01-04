@@ -1,5 +1,8 @@
 from django.core.mail import send_mail, BadHeaderError
+from django.core.cache import cache
+from .models import Post
 from Blog.celery import app
+
 
 @app.task
 def send_contact_mail(name, company, email, message):
@@ -16,3 +19,11 @@ def send_contact_mail(name, company, email, message):
 			)
 	except BadHeaderError:
 		pass
+
+@app.task
+def load_to_cache(post_id):
+	post = Post.objects.get(id=post_id).to_dict()
+	if cache.get(post['id']) is not None:
+		pass
+	else:
+		cache.set(post['id'], post)

@@ -39,6 +39,21 @@ class Post(models.Model):
 	def not_even(self):
 		return self.id%2!=0
 
+	def to_dict(self):
+		pub_date = '{}-{}-{}'.format(
+			self.pub_date.year,
+			self.pub_date.month,
+			self.pub_date.day
+			)
+		return {
+			'id': self.id,
+			'author': self.author.name,
+			'desc': self.description,
+			'title': self.title,
+			'content': self.content.text,
+			'pub_date': pub_date,
+		}
+
 	class Meta:
 		ordering = ['-pub_date']
 		managed = True

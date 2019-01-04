@@ -4,8 +4,8 @@ from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
 from blog.models import Post, Tag, Author
 from django.core.cache import cache
-from django.core.mail import send_mail, BadHeaderError
-from .tasks import send_contact_mail
+from .tasks import send_contact_mail, load_to_cache
+from celery import group
 
 
 class TagMixin:
@@ -23,12 +23,14 @@ class ListPageView(ListView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 	model = Post
-	paginate_by = 6
+	paginate_by = 4
 
 	def get_context_data(self, **kwargs):
 		context = super(ListPageView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
 		context['url'] = self.request.path + '?'
+		object_list = (post.id for post in context['object_list'])
+		group(load_to_cache.s(i) for i in object_list)()
 		return context
 
 
@@ -76,12 +78,11 @@ class PostPageView(TemplateView, TagMixin):
 	def get_context_data(self, **kwargs):
 		identificator = kwargs['id']
 		context = super(PostPageView, self).get_context_data(**kwargs)
-		try:
-			post = Post.objects.get(id=identificator)
-		except Post.DoesNotExist:
-			raise Http404
-		context['post'] = post
+		post = cache.get(identificator)
+		if post is not None:
+			context.update(post)
 		context.update(TagMixin.mix(self))
+		print(post)
 		return context
 
 
@@ -89,7 +90,7 @@ class SearchPageView(ListView, TagMixin):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 	model = Post
-	paginate_by = 6
+	paginate_by = 4
 
 	def get_queryset(self):
 		qs = super(SearchPageView, self).get_queryset()

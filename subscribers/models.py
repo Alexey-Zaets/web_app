@@ -25,8 +25,3 @@ def distribution(sender, **kwargs):
 		post_id = kwargs['instance'].id
 		subscribers = Subscribers.objects.all().iterator(chunk_size=1000)
 		group(mailing.s(i.email, post_id) for i in subscribers)()
-		'''
-		mailing_list = [
-			mailing.delay(i.email, post_id) for i in subscribers
-			]
-		'''
