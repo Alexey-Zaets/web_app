@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+import smtplib
 from Blog.celery import app
 from blog.models import Post
 
@@ -6,10 +6,12 @@ from blog.models import Post
 @app.task
 def mailing(email, post_id):
 	post = Post.objects.get(id=post_id)
-	mail = send_mail(
-		post.title,
-		post.content.text,
-		'djangotest2019@gmail.com',
-		[email],
-		fail_silently=False
-		)
+	fadd = 'djangotest2019@gmail.com'
+	tadd = email
+	username = 'djangotest2019@gmail.com'
+	password = 'testdjangoaccount'
+	server = smtplib.SMTP('smtp.gmail.com', 587)
+	server.ehlo()
+	server.starttls()
+	server.login(username, password)
+	server.sendmail(fadd, tadd, post.content.text)

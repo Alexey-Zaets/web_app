@@ -4,6 +4,7 @@ from django.core.validators import EmailValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .tasks import mailing
+from celery import group
 
 
 class Subscribers(models.Model):
@@ -19,10 +20,13 @@ class Subscribers(models.Model):
 
 
 @receiver(post_save, sender=Post)
-def dictribution(sender, **kwargs):
+def distribution(sender, **kwargs):
 	if kwargs['created']:
 		post_id = kwargs['instance'].id
 		subscribers = Subscribers.objects.all().iterator(chunk_size=1000)
+		group(mailing.s(i.email, post_id) for i in subscribers)()
+		'''
 		mailing_list = [
 			mailing.delay(i.email, post_id) for i in subscribers
 			]
+		'''

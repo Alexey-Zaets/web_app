@@ -18,15 +18,25 @@ class TagMixin:
 			'tags': self.tags,
 			}
 
-class HomePageView(ListView, TagMixin):
-	model = Post
+
+class ListPageView(ListView, TagMixin):
 	http_method_names = ['get']
-	template_name = 'index.html'
+	template_name = 'search_result.html'
+	model = Post
 	paginate_by = 6
 
 	def get_context_data(self, **kwargs):
-		context = super(HomePageView, self).get_context_data(**kwargs)
+		context = super(ListPageView, self).get_context_data(**kwargs)
 		context.update(TagMixin.mix(self))
+		context['url'] = self.request.path + '?'
+		return context
+
+
+class HomePageView(ListPageView):
+	template_name = 'index.html'
+
+	def get_context_data(self, **kwargs):
+		context = ListPageView.get_context_data(self, **kwargs)
 		return context
 
 
@@ -93,23 +103,8 @@ class SearchPageView(ListView, TagMixin):
 		if not context['object_list'].exists():
 			context['message'] = 'По вашему запросу ничего не найдено' 
 		context.update(TagMixin.mix(self))
-		context['url'] = '{}?search={}'.format(
-			self.request.path,
-			self.request.GET.get('search')
-			)
-		return context
-
-
-class ListPageView(ListView, TagMixin):
-	http_method_names = ['get']
-	template_name = 'search_result.html'
-	model = Post
-	paginate_by = 6
-
-	def get_context_data(self, **kwargs):
-		context = super(ListPageView, self).get_context_data(**kwargs)
-		context.update(TagMixin.mix(self))
-		context['url'] = self.request.path
+		search = self.request.GET.get('search')
+		context['url'] = self.request.path + '?search=' + search + '&'
 		return context
 
 
