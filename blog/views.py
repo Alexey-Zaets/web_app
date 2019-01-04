@@ -4,7 +4,7 @@ from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
 from blog.models import Post, Tag, Author
 from django.core.cache import cache
-from .tasks import send_contact_mail, load_to_cache
+from blog.tasks import send_contact_mail, load_to_cache
 from celery import group
 
 

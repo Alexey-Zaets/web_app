@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PostStatus
+from analytics.models import PostStatus
 # Register your models here.
 
 

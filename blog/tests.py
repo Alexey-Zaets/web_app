@@ -1,6 +1,7 @@
 from django.test import TestCase
-from .views import HomePageView, PostPageView, SearchPageView, TagPageView, AuthorPostsView
-from .models import Author, Post, Tag
+from blog.views import HomePageView, PostPageView, \
+SearchPageView, TagPageView, AuthorPostsView
+from blog.models import Author, Post, Tag
 
 # Create your tests here.
 class HomePageViewTest(TestCase):

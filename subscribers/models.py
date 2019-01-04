@@ -3,7 +3,7 @@ from blog.models import Post
 from django.core.validators import EmailValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .tasks import mailing
+from subscribers.tasks import mailing
 from celery import group
 
 
