@@ -3,7 +3,8 @@ from .views import HomePageView, PostPageView, \
 SearchPageView, TagPageView, AuthorPostsView
 from .models import Author, Post, Tag
 
-
+#Old tests
+'''
 class HomePageViewTest(TestCase):
 
 	def test_view_with_no_page(self):
@@ -61,3 +62,4 @@ class AuthorPostsViewTest(TestCase):
 			url = '/author/{}/'.format(i)
 			response = self.client.get(url)
 			self.assertEqual(response.status_code, 200)
+'''

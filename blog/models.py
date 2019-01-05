@@ -1,5 +1,7 @@
 from django.db import models
-# Create your models here.
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Author(models.Model):
@@ -40,6 +42,7 @@ class Post(models.Model):
 		return self.id%2!=0
 
 	def to_dict(self):
+		comments = Comment.objects.filter(post=self)
 		pub_date = '{}-{}-{}'.format(
 			self.pub_date.year,
 			self.pub_date.month,
@@ -52,8 +55,22 @@ class Post(models.Model):
 			'title': self.title,
 			'content': self.content.text,
 			'pub_date': pub_date,
+			'comments': comments,
+			'comments_count': comments.count(),
 		}
 
 	class Meta:
 		ordering = ['-pub_date']
 		managed = True
+
+
+class Comment(models.Model):
+	post = models.OneToOneField(Post, on_delete=models.DO_NOTHING)
+	username = models.CharField(max_length=127, blank=True)
+	comment = models.TextField(blank=True)
+
+
+@receiver(post_save, sender=Post)
+def comment_create(sender, **kwargs):
+	if kwargs['created']:
+		Comment.objects.create(post=kwargs['instance'])

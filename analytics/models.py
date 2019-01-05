@@ -12,6 +12,12 @@ class PostStatus(models.Model):
 	def __str__(self):
 		return self.post.title
 
+	def to_dict(self):
+		return {
+			'views': self.views,
+			'likes': self.likes,
+		}
+
 	class Meta:
 		managed = True
 
@@ -19,4 +25,4 @@ class PostStatus(models.Model):
 @receiver(post_save, sender=Post)
 def status_create(sender, **kwargs):
 	if kwargs['created']:
-		post_status = PostStatus.objects.create(post=kwargs['instance'])
+		PostStatus.objects.create(post=kwargs['instance'])

@@ -6,6 +6,7 @@ from .models import Post, Tag, Author
 from django.core.cache import cache
 from .tasks import send_contact_mail, load_to_cache
 from celery import group
+from analytics.models import PostStatus
 
 
 class TagMixin:
@@ -80,6 +81,12 @@ class PostPageView(TemplateView, TagMixin):
 		context = super(PostPageView, self).get_context_data(**kwargs)
 		post = cache.get(identificator)
 		if post is not None:
+			context.update(post)
+		else:
+			post = Post.objects.get(id=identificator)
+			status = PostStatus.objects.get(post=post).to_dict()
+			post = post.to_dict()
+			post.update(status)
 			context.update(post)
 		context.update(TagMixin.mix(self))
 		print(post)
