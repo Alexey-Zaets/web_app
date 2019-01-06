@@ -20,7 +20,8 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.views.decorators.csrf import csrf_exempt
 from blog.views import HomePageView, PostPageView, SearchPageView, \
-TagPageView, AboutPageView, AuthorPostsView, ContactPageView
+TagPageView, AboutPageView, AuthorPostsView, ContactPageView, \
+AddComment
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('about/', AboutPageView.as_view()),
     path('contact/', csrf_exempt(ContactPageView.as_view())),
     path('post/<int:id>/', PostPageView.as_view()),
+    path('post/<int:id>/add/', csrf_exempt(AddComment.as_view())),
     path('tag/<str:tag>/', TagPageView.as_view()),
     path('author/<str:author>/', AuthorPostsView.as_view()),
     path('search/', SearchPageView.as_view()),

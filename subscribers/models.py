@@ -23,6 +23,6 @@ class Subscribers(models.Model):
 def distribution(sender, **kwargs):
 	if kwargs['created']:
 		post_id = kwargs['instance'].id
-		subscribers = Subscribers.objects.all().iterator(chunk_size=1000)
+		subscribers = Subscribers.objects.all()
 		if subscribers.exists():
 			group(mailing.s(i.email, post_id) for i in subscribers)()

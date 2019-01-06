@@ -2,7 +2,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
-from .models import Post, Tag, Author
+from .models import Post, Tag, Author, Comment
 from django.core.cache import cache
 from .tasks import send_contact_mail, load_to_cache
 from celery import group
@@ -63,9 +63,9 @@ class ContactPageView(View):
 		company = request.POST.get('company', '')
 		email = request.POST.get('email', '')
 		message = request.POST.get('message', '')
-		if name and company and email and message:
+		if name.isalnum() and email.isalnum() and message.isalnum():
 			result = send_contact_mail.delay(
-				name, company, email, message
+				name, email, message
 				)
 			return HttpResponseRedirect('/contact/')
 		else:
@@ -89,8 +89,25 @@ class PostPageView(TemplateView, TagMixin):
 			post.update(status)
 			context.update(post)
 		context.update(TagMixin.mix(self))
-		print(post)
 		return context
+
+
+class AddComment(View):
+	http_method_names = ['post']
+
+	def post(self, request, **kwargs):
+		identificator = kwargs['id']
+		post = Post.objects.get(id=identificator)
+		url = request.META.get('HTTP_REFERER')
+		comment = request.POST.get('comment')
+		if comment is not None and comment.isalnum():
+			obj, created = Comment.objects.get_or_create(
+				post=post,
+				username=request.user.username,
+				comment=comment
+				)
+			load_to_cache.delay(identificator)
+		return HttpResponseRedirect(url)
 
 
 class SearchPageView(ListView, TagMixin):
@@ -102,7 +119,7 @@ class SearchPageView(ListView, TagMixin):
 	def get_queryset(self):
 		qs = super(SearchPageView, self).get_queryset()
 		search = self.request.GET.get('search')
-		if search is not None:
+		if search is not None and search.isalnum():
 			qs = qs.filter(title__icontains=search)
 		return qs
 
@@ -113,6 +130,8 @@ class SearchPageView(ListView, TagMixin):
 		context.update(TagMixin.mix(self))
 		search = self.request.GET.get('search')
 		context['url'] = self.request.path + '?search=' + search + '&'
+		object_list = (post.id for post in context['object_list'])
+		group(load_to_cache.s(i) for i in object_list)()
 		return context
 
 

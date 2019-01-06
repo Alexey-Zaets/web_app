@@ -6,7 +6,7 @@ from Blog.celery import app
 
 
 @app.task
-def send_contact_mail(name, company, email, message):
+def send_contact_mail(name, email, message):
 	try:
 		mail_message = "{}\n\n{}\n{}".format(
 			message, name, email
@@ -27,7 +27,10 @@ def load_to_cache(post_id):
 	status = PostStatus.objects.get(post=post).to_dict()
 	post = post.to_dict()
 	post.update(status)
-	if cache.get(post['id']) is not None:
-		pass
+	print(post)
+	if cache.get(post_id) is not None:
+		if cache.get(post_id) != post:
+			print('not equal')
+			cache.set(post['id'], post)
 	else:
 		cache.set(post['id'], post)
