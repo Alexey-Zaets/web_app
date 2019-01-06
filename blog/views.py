@@ -59,13 +59,10 @@ class ContactPageView(View):
 		return render(self.request, self.template_name, {})
 
 	def post(self, request):
-		name = request.POST.get('name', '')
-		check_name = name.strip()
-		email = request.POST.get('email', '')
-		check_email = email.strip()
-		message = request.POST.get('message', '')
-		check_message = message.strip()
-		if any(check_name) and any(check_email) and any(check_message):
+		name = request.POST.get('name', '').strip()
+		email = request.POST.get('email', '').strip()
+		message = request.POST.get('message', '').strip()
+		if any(name) and any(email) and any(message):
 			result = send_contact_mail.delay(
 				name, email, message
 				)
@@ -101,9 +98,8 @@ class AddComment(View):
 		identificator = kwargs['id']
 		post = Post.objects.get(id=identificator)
 		url = request.META.get('HTTP_REFERER')
-		comment = request.POST.get('comment', '')
-		check_comment = comment.strip()
-		if any(check_comment):
+		comment = request.POST.get('comment', '').strip()
+		if any(comment):
 			obj, created = Comment.objects.get_or_create(
 				post=post,
 				username=request.user.username,
@@ -121,9 +117,8 @@ class SearchPageView(ListView, TagMixin):
 
 	def get_queryset(self):
 		qs = super(SearchPageView, self).get_queryset()
-		search = self.request.GET.get('search', '')
-		check_search = search.strip()
-		if any(check_search):
+		search = self.request.GET.get('search', '').strip()
+		if any(search):
 			qs = qs.filter(title__icontains=search)
 		return qs
 
