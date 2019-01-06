@@ -59,17 +59,16 @@ class ContactPageView(View):
 		return render(self.request, self.template_name, {})
 
 	def post(self, request):
-		name = request.POST.get('name', '')
-		company = request.POST.get('company', '')
-		email = request.POST.get('email', '')
-		message = request.POST.get('message', '')
-		if name.isalnum() and email.isalnum() and message.isalnum():
+		name = request.POST.get('name', '').strip()
+		email = request.POST.get('email', '').strip()
+		message = request.POST.get('message', '').strip()
+		if any(name) and any(email) and any(message):
 			result = send_contact_mail.delay(
 				name, email, message
 				)
 			return HttpResponseRedirect('/contact/')
 		else:
-			return HttpResponse('Убедитесь, что все поля заполнены')
+			return HttpResponse('Убедитесь, что все поля заполнены верно')
 
 
 class PostPageView(TemplateView, TagMixin):
@@ -99,8 +98,8 @@ class AddComment(View):
 		identificator = kwargs['id']
 		post = Post.objects.get(id=identificator)
 		url = request.META.get('HTTP_REFERER')
-		comment = request.POST.get('comment')
-		if comment is not None and comment.isalnum():
+		comment = request.POST.get('comment', '').strip()
+		if any(comment):
 			obj, created = Comment.objects.get_or_create(
 				post=post,
 				username=request.user.username,
@@ -118,8 +117,8 @@ class SearchPageView(ListView, TagMixin):
 
 	def get_queryset(self):
 		qs = super(SearchPageView, self).get_queryset()
-		search = self.request.GET.get('search')
-		if search is not None and search.isalnum():
+		search = self.request.GET.get('search', '').strip()
+		if any(search):
 			qs = qs.filter(title__icontains=search)
 		return qs
 
