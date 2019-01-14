@@ -2,16 +2,17 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
-from .models import Post, Tag, Author, Comment
+from blog.models import Post, Tag, Author, Comment
 from django.core.cache import cache
-from .tasks import send_contact_mail, load_to_cache
+from blog.tasks import send_contact_mail, load_to_cache
 from celery import group
 from analytics.models import PostStatus
+from analytics.tasks import add_viewer
 
 
 class TagMixin:
-	authors = Author.objects.all()
-	tags = Tag.objects.all()
+	authors =[author.name for author in Author.objects.all()]
+	tags = [tag.title for tag in Tag.objects.all()]
 
 	def mix(self):
 		return {
@@ -63,7 +64,7 @@ class ContactPageView(View):
 		email = request.POST.get('email', '').strip()
 		message = request.POST.get('message', '').strip()
 		if any(name) and any(email) and any(message):
-			result = send_contact_mail.delay(
+			send_contact_mail.delay(
 				name, email, message
 				)
 			return HttpResponseRedirect('/contact/')
@@ -77,6 +78,8 @@ class PostPageView(TemplateView, TagMixin):
 
 	def get_context_data(self, **kwargs):
 		identificator = kwargs['id']
+		user_ip = self.request.META.get('REMOTE_ADDR')
+		add_viewer.delay(identificator, user_ip)
 		context = super(PostPageView, self).get_context_data(**kwargs)
 		post = cache.get(identificator)
 		if post is not None:

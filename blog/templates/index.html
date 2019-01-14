@@ -163,7 +163,7 @@
               <div class="card-body">
                 <h4 class="card-title">Tags</h4>
                 {% for tag in tags %}
-                <a class="btn btn-light btn-sm mb-1" href="/tag/{{tag.title}}/">{{tag.title}}</a>
+                <a class="btn btn-light btn-sm mb-1" href="/tag/{{ tag }}/">{{ tag }}</a>
                 {% endfor %}
               </div>
             </div><!-- /.card -->
@@ -294,7 +294,9 @@
       </div>
     </div>
   </footer>
-
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="{% static "blog.js" %}"></script>
+  <script src="{% static "main.js" %}"></script>
 </body>
 </html>

@@ -22,6 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 from blog.views import HomePageView, PostPageView, SearchPageView, \
 TagPageView, AboutPageView, AuthorPostsView, ContactPageView, \
 AddComment
+from analytics.views import AddLike
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('contact/', csrf_exempt(ContactPageView.as_view())),
     path('post/<int:id>/', PostPageView.as_view()),
     path('post/<int:id>/add/', csrf_exempt(AddComment.as_view())),
+    path('post/<int:id>/addlike/', AddLike.as_view()),
     path('tag/<str:tag>/', TagPageView.as_view()),
     path('author/<str:author>/', AuthorPostsView.as_view()),
     path('search/', SearchPageView.as_view()),

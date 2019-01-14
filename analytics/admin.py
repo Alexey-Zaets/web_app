@@ -5,4 +5,4 @@ from .models import PostStatus
 
 @admin.register(PostStatus)
 class PostStatusAdmin(admin.ModelAdmin):
-	field = ['post', 'views', 'likes']
+    field = ['post', 'views', 'likes']

@@ -57,7 +57,7 @@ class Post(models.Model):
 			'content': self.content.text,
 			'pub_date': pub_date,
 			'comments': comments_list,
-			'comments_count': comments.count(),
+			'comments_count': comments.count(), 
 			}
 
 	class Meta:
