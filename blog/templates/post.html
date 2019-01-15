@@ -9,10 +9,21 @@
           <article class="card mb-4">
             <div class="row">
               <div class="col-md-1">
-                <button class="icon-button heart" data-id="{{ id }}" type="button">
-                  <i class="far fa-heart"></i>
-                </button>
-                <p class="likes text-center mb-2">{{ likes }}</p>
+                {% if already_liked %}
+                <div>
+                  <button class="icon-button" style="color:red;" type="button">
+                      <i class="fas fa-heart"></i>
+                  </button>
+                  <p class="likes text-center mb-2">{{ likes }}</p>
+                </div>
+                {% else %}
+                <div class="heart" data-id="{{ id }}">
+                  <button class="icon-button" type="button">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <p class="likes text-center mb-2">{{ likes }}</p>
+                </div>
+                {% endif %}
                 <button class="icon-button" type="button" disabled="">
                   <i class="far fa-eye"></i>
                 </button>

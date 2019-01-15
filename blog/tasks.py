@@ -29,7 +29,6 @@ def load_to_cache(post_id):
 	post.update(status)
 	if cache.get(post_id) is not None:
 		if cache.get(post_id) != post:
-			print('not equal')
 			cache.set(post['id'], post)
 	else:
 		cache.set(post['id'], post)
