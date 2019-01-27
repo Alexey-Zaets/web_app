@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
@@ -63,7 +64,7 @@ class ContactPageView(View):
 		name = request.POST.get('name', '').strip()
 		email = request.POST.get('email', '').strip()
 		message = request.POST.get('message', '').strip()
-		if any(name) and any(email) and any(message):
+		if name and email and message:
 			send_contact_mail.delay(
 				name, email, message
 				)
@@ -110,7 +111,7 @@ class AddComment(View):
 		post = Post.objects.get(id=post_id)
 		url = request.META.get('HTTP_REFERER')
 		comment = request.POST.get('comment', '').strip()
-		if any(comment):
+		if comment:
 			obj, created = Comment.objects.get_or_create(
 				post=post,
 				username=request.user.username,
@@ -129,8 +130,12 @@ class SearchPageView(ListView, TagMixin):
 	def get_queryset(self):
 		qs = super(SearchPageView, self).get_queryset()
 		search = self.request.GET.get('search', '').strip()
-		if any(search):
-			qs = qs.filter(title__icontains=search)
+		if search:
+			qs = qs.filter(
+				Q(title__icontains=search) | \
+				Q(content__text__icontains=search) | \
+				Q(description__icontains=search)
+			)
 		return qs
 
 	def get_context_data(self, **kwargs):

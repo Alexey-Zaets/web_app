@@ -10,7 +10,7 @@ def add_viewer(post_id, user_ip):
         "where post_id=%s;",
         [post_id]
         )
-    already_viewed = (i.viewers for i in already_viewed)
+    already_viewed = (i.viewer for i in already_viewed)
     if user_ip not in already_viewed:
         obj = Viewers.objects.get(post=post)
         obj(viewer=user_ip).save()

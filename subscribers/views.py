@@ -10,7 +10,7 @@ class SubscribeView(View):
 	def post(self, request):
 		email = request.POST.get('email', '').strip()
 		url = request.META.get('HTTP_REFERER')
-		if any(email):
+		if email:
 			try:
 				Subscribers.objects.create(email=email)
 			except IntegrityError:

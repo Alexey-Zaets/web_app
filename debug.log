@@ -1,0 +1,310 @@
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.009) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.004) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.003) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.006) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.008) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.009) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.002) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 11; args=(11,)
+Not Found: /post/11/img/1.jpg
+(0.005) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.005) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.001) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 11; args=(11,)
+Not Found: /post/11/img/1.jpg
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 6; args=(6,)
+(0.001) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 6; args=(6,)
+Not Found: /post/6/img/1.jpg
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python'; args=('python',)
+(0.003) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python' ORDER BY "blog_post"."pub_date" DESC  LIMIT 5; args=('python',)
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Not Found: /post/6/img/1.jpg
+Not Found: /post/11/img/1.jpg
+Not Found: /post/5/img/1.jpg
+Not Found: /post/11/img/1.jpg
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.005) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.001) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 11; args=(11,)
+(0.011) SELECT COUNT(*) AS "__count" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python'; args=('python',)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python' ORDER BY "blog_post"."pub_date" DESC  LIMIT 5; args=('python',)
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.005) SELECT COUNT(*) AS "__count" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'django'; args=('django',)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'django' ORDER BY "blog_post"."pub_date" DESC  LIMIT 4; args=('django',)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 4; args=(4,)
+(0.001) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 4; args=(4,)
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.014) SELECT COUNT(*) AS "__count" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%'); args=('%django%',)
+(0.001) SELECT (1) AS "a" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%')  LIMIT 1; args=('%django%',)
+(0.004) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.002) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.005) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%'); args=('%django%',)
+(0.001) SELECT (1) AS "a" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%')  LIMIT 1; args=('%django%',)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.006) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%'); args=('%django%',)
+(0.001) SELECT (1) AS "a" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%')  LIMIT 1; args=('%django%',)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.004) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.005) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.006) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%'); args=('%django%',)
+(0.002) SELECT (1) AS "a" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%')  LIMIT 1; args=('%django%',)
+(0.003) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.002) SELECT "blog_author"."id", "blog_author"."name" FROM "blog_author"  LIMIT 21; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE UPPER("blog_post"."title"::text) LIKE UPPER('%django%') ORDER BY "blog_post"."pub_date" DESC  LIMIT 2; args=('%django%',)
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.007) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.007) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:06.513302+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 6, 513302, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.008) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_admin_log" INNER JOIN "auth_user" ON ("django_admin_log"."user_id" = "auth_user"."id") LEFT OUTER JOIN "django_content_type" ON ("django_admin_log"."content_type_id" = "django_content_type"."id") WHERE "django_admin_log"."user_id" = 1 ORDER BY "django_admin_log"."action_time" DESC  LIMIT 10; args=(1,)
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:07.156303+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 7, 156303, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.004) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_admin_log" INNER JOIN "auth_user" ON ("django_admin_log"."user_id" = "auth_user"."id") LEFT OUTER JOIN "django_content_type" ON ("django_admin_log"."content_type_id" = "django_content_type"."id") WHERE "django_admin_log"."user_id" = 1 ORDER BY "django_admin_log"."action_time" DESC  LIMIT 10; args=(1,)
+Not Found: /favicon.ico
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:14.413940+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 14, 413940, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.003) SELECT COUNT(*) AS "__count" FROM "analytics_poststatus"; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "analytics_poststatus"; args=()
+(0.004) SELECT "analytics_poststatus"."id", "analytics_poststatus"."post_id", "analytics_poststatus"."views", "analytics_poststatus"."likes" FROM "analytics_poststatus" ORDER BY "analytics_poststatus"."id" DESC; args=()
+(0.004) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 7; args=(7,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 6; args=(6,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 5; args=(5,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 4; args=(4,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 3; args=(3,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 2; args=(2,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 1; args=(1,)
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:14.636088+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 14, 636088, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:23.272693+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 23, 272693, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.002) SELECT "analytics_poststatus"."id", "analytics_poststatus"."post_id", "analytics_poststatus"."views", "analytics_poststatus"."likes" FROM "analytics_poststatus" WHERE "analytics_poststatus"."id" = 7; args=(7,)
+(0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'analytics' AND "django_content_type"."model" = 'poststatus'); args=('analytics', 'poststatus')
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 7; args=(7,)
+(0.002) DECLARE "_django_curs_140622750775040_1" NO SCROLL CURSOR WITH HOLD FOR SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."title" ASC; args=()
+(0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:23.428087+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 23, 428087, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:25.873959+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 25, 873959, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.002) SELECT COUNT(*) AS "__count" FROM "analytics_poststatus"; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "analytics_poststatus"; args=()
+(0.002) SELECT "analytics_poststatus"."id", "analytics_poststatus"."post_id", "analytics_poststatus"."views", "analytics_poststatus"."likes" FROM "analytics_poststatus" ORDER BY "analytics_poststatus"."id" DESC; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 7; args=(7,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 6; args=(6,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 5; args=(5,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 4; args=(4,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 3; args=(3,)
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 2; args=(2,)
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 1; args=(1,)
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:26.624262+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 26, 624262, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.006) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_admin_log" INNER JOIN "auth_user" ON ("django_admin_log"."user_id" = "auth_user"."id") LEFT OUTER JOIN "django_content_type" ON ("django_admin_log"."content_type_id" = "django_content_type"."id") WHERE "django_admin_log"."user_id" = 1 ORDER BY "django_admin_log"."action_time" DESC  LIMIT 10; args=(1,)
+(0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:28.413159+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 28, 413159, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.006) SELECT COUNT(*) AS "__count" FROM "subscribers_subscribers"; args=()
+(0.001) SELECT COUNT(*) AS "__count" FROM "subscribers_subscribers"; args=()
+(0.001) SELECT "subscribers_subscribers"."id", "subscribers_subscribers"."email" FROM "subscribers_subscribers" ORDER BY "subscribers_subscribers"."id" DESC; args=()
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:28.523712+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 28, 523712, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:30.333843+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 30, 333843, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'subscribers' AND "django_content_type"."model" = 'subscribers'); args=('subscribers', 'subscribers')
+(0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2018-12-30T13:55:30.437955+00:00'::timestamptz AND "django_session"."session_key" = 'y1owt8ag65l0hbacb8aar89vc2sw2mo7'); args=(datetime.datetime(2018, 12, 30, 13, 55, 30, 437955, tzinfo=<UTC>), 'y1owt8ag65l0hbacb8aar89vc2sw2mo7')
+(0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.008) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.007) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 2 OFFSET 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.002) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.019) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.007) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.003) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" WHERE "blog_post"."id" = 11; args=(11,)
+(0.001) SELECT "blog_postcontent"."id", "blog_postcontent"."text" FROM "blog_postcontent" WHERE "blog_postcontent"."id" = 11; args=(11,)
+Not Found: /post/11/img/1.jpg
+(0.004) SELECT COUNT(*) AS "__count" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python'; args=('python',)
+(0.003) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" INNER JOIN "blog_post_tags" ON ("blog_post"."id" = "blog_post_tags"."post_id") INNER JOIN "blog_tag" ON ("blog_post_tags"."tag_id" = "blog_tag"."id") WHERE "blog_tag"."title" = 'python' ORDER BY "blog_post"."pub_date" DESC  LIMIT 5; args=('python',)
+(0.003) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
+(0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.007) SELECT COUNT(*) AS "__count" FROM "blog_post"; args=()
+(0.001) SELECT "blog_post"."id", "blog_post"."author_id", "blog_post"."description", "blog_post"."title", "blog_post"."content_id", "blog_post"."image", "blog_post"."pub_date" FROM "blog_post" ORDER BY "blog_post"."pub_date" DESC  LIMIT 6; args=()
+(0.001) SELECT "blog_tag"."id", "blog_tag"."title" FROM "blog_tag"; args=()
