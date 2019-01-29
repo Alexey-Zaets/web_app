@@ -1,11 +1,12 @@
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task
 from django.core.mail import send_mail, BadHeaderError
 from django.core.cache import cache
 from .models import Post, Comment
 from analytics.models import PostStatus
-from Blog.celery import app
 
 
-@app.task
+@shared_task
 def send_contact_mail(name, email, message):
 	try:
 		mail_message = "{}\n\n{}\n{}".format(
@@ -21,7 +22,7 @@ def send_contact_mail(name, email, message):
 	except BadHeaderError:
 		pass
 
-@app.task
+@shared_task
 def load_to_cache(post_id):
 	post = Post.objects.get(id=post_id)
 	status = PostStatus.objects.get(post=post).to_dict()

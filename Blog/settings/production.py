@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'django_celery_results',
     'blog',
     'analytics',
     'subscribers',
@@ -210,5 +211,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'django-cache'
+CELERY_TIMEZONE = 'Europe/Kiev'
 
 django_heroku.settings(locals())

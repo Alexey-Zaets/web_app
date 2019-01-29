@@ -13,16 +13,13 @@ class AddLike(View):
         post_id = kwargs['id']
         post = Post.objects.get(id=post_id)
         user_ip = request.META.get('REMOTE_ADDR')
-        obj = WhoLiked.objects.get(post=post)
-        obj(who_liked=user_ip).save()
+        obj = WhoLiked(post=post, who_liked=user_ip)
+        obj.save()
         post_status_obj = PostStatus.objects.get(post=post)
         post_status_obj.likes += 1
         post_status_obj.save()
         return render(
             self.request,
             self.template_name,
-            {
-                'likes': post_status_obj.likes,
-                'already_liked': already_liked
-            }
+            {'likes': post_status_obj.likes, 'already_liked': True}
         )

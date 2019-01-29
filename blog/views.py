@@ -11,18 +11,7 @@ from analytics.models import PostStatus, WhoLiked
 from analytics.tasks import add_viewer
 
 
-class TagMixin:
-	authors =[author.name for author in Author.objects.all()]
-	tags = [tag.title for tag in Tag.objects.all()]
-
-	def mix(self):
-		return {
-			'authors': self.authors,
-			'tags': self.tags,
-			}
-
-
-class ListPageView(ListView, TagMixin):
+class ListPageView(ListView):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 	model = Post
@@ -30,7 +19,7 @@ class ListPageView(ListView, TagMixin):
 
 	def get_context_data(self, **kwargs):
 		context = super(ListPageView, self).get_context_data(**kwargs)
-		context.update(TagMixin.mix(self))
+		context['tags'] = Tag.objects.get_tags_list()
 		context['url'] = self.request.path + '?'
 		object_list = (post.id for post in context['object_list'])
 		group(load_to_cache.s(i) for i in object_list)()
@@ -73,7 +62,7 @@ class ContactPageView(View):
 			return HttpResponse('Убедитесь, что все поля заполнены верно')
 
 
-class PostPageView(TemplateView, TagMixin):
+class PostPageView(TemplateView):
 	http_method_names = ['get']
 	template_name = 'post.html'
 
@@ -99,7 +88,7 @@ class PostPageView(TemplateView, TagMixin):
 		already_liked = True if user_ip in already_liked else False
 		context['already_liked'] = already_liked
 		context.update(post)
-		context.update(TagMixin.mix(self))
+		context['tags'] = Tag.objects.get_tags_list()
 		return context
 
 
@@ -121,7 +110,7 @@ class AddComment(View):
 		return HttpResponseRedirect(url)
 
 
-class SearchPageView(ListView, TagMixin):
+class SearchPageView(ListView):
 	http_method_names = ['get']
 	template_name = 'search_result.html'
 	model = Post
@@ -142,7 +131,7 @@ class SearchPageView(ListView, TagMixin):
 		context = super(SearchPageView, self).get_context_data(**kwargs)
 		if not context['object_list'].exists():
 			context['message'] = 'По вашему запросу ничего не найдено' 
-		context.update(TagMixin.mix(self))
+		context['tags'] = Tag.objects.get_tags_list()
 		search = self.request.GET.get('search')
 		context['url'] = self.request.path + '?search=' + search + '&'
 		object_list = (post.id for post in context['object_list'])

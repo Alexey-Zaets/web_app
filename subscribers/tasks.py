@@ -1,10 +1,11 @@
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task
 import smtplib
-from Blog.celery import app
 from Blog.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 from blog.models import Post
 
 
-@app.task
+@shared_task
 def mailing(email, post_id):
 	post = Post.objects.get(id=post_id)
 	fadd = 'djangotest2019@gmail.com'

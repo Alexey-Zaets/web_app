@@ -6,16 +6,16 @@ from django.dispatch import receiver
 
 class Viewers(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    viewer = models.CharField(max_length=120)
+    viewer = models.CharField(max_length=120, blank=True)
 
 
 class WhoLiked(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    who_liked = models.CharField(max_length=120)
+    who_liked = models.CharField(max_length=120, blank=True)
 
 
 class PostStatus(models.Model):
-    post = models.OneToOneField(Post, on_delete=models.DO_NOTHING)
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
     views = models.IntegerField('Просмотры', default=0)
     likes = models.IntegerField('Лайки', default=0)
 
@@ -36,3 +36,4 @@ class PostStatus(models.Model):
 def status_create(sender, **kwargs):
     if kwargs['created']:
         PostStatus.objects.create(post=kwargs['instance'])
+        WhoLiked.objects.create(post=kwargs['instance'])

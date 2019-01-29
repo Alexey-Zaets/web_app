@@ -1,4 +1,5 @@
 from django.db import models
+from .managers import TagManager
 
 
 class Author(models.Model):
@@ -10,6 +11,8 @@ class Author(models.Model):
 
 class Tag(models.Model):
 	title = models.CharField('Тэг', max_length=63)
+
+	objects = TagManager()
 
 	def __str__(self):
 		return self.title
@@ -27,7 +30,7 @@ class Post(models.Model):
 	description = models.CharField('Описание', max_length=250, blank=False)
 	tags = models.ManyToManyField(Tag)
 	title = models.CharField('Название', max_length=127)
-	content = models.OneToOneField(PostContent,on_delete=models.CASCADE)
+	content = models.OneToOneField(PostContent, on_delete=models.CASCADE)
 	image = models.ImageField('Изображение', upload_to='media/')
 	pub_date = models.DateField('Дата публикации', auto_now_add=True)
 
@@ -44,6 +47,8 @@ class Post(models.Model):
 			comments_list = [
 				[comment.username, comment.comment] for comment in comments
 			]
+		else:
+			comments_list = []
 		pub_date = '{}-{}-{}'.format(
 			self.pub_date.year,
 			self.pub_date.month,
@@ -67,11 +72,12 @@ class Post(models.Model):
 
 class Comment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
-	username = models.CharField(max_length=127, blank=True)
-	comment = models.TextField(blank=True)
+	username = models.CharField(max_length=127, blank=False)
+	comment = models.TextField(blank=False)
 
 	def __str__(self):
 		return '{}: {}'.format(
 			Post.objects.get(id=self.post.id).title,
 			self.comment
 			)
+		
