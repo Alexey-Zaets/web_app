@@ -1,9 +1,11 @@
 from django.db import models
-from .managers import TagManager
+from .managers import TagManager, AuthorManager, CitationManager
 
 
 class Author(models.Model):
 	name = models.CharField('Имя', max_length=63)
+
+	objects = AuthorManager()
 
 	def __str__(self):
 		return self.name
@@ -80,4 +82,12 @@ class Comment(models.Model):
 			Post.objects.get(id=self.post.id).title,
 			self.comment
 			)
-		
+
+
+class Citation(models.Model):
+	citation = models.TextField()
+
+	objects = CitationManager()
+
+	def __str__(self):
+		return self.citation

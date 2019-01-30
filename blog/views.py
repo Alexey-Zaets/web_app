@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
-from blog.models import Post, Tag, Author, Comment
+from blog.models import Post, Tag, Author, Comment, Citation
 from django.core.cache import cache
 from blog.tasks import send_contact_mail, load_to_cache
 from celery import group
@@ -20,6 +20,7 @@ class ListPageView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(ListPageView, self).get_context_data(**kwargs)
 		context['tags'] = Tag.objects.get_tags_list()
+		context['citation'] = Citation.objects.get_random_citation()
 		context['url'] = self.request.path + '?'
 		object_list = (post.id for post in context['object_list'])
 		group(load_to_cache.s(i) for i in object_list)()
@@ -87,8 +88,9 @@ class PostPageView(TemplateView):
 		already_liked = (i.who_liked for i in already_liked)
 		already_liked = True if user_ip in already_liked else False
 		context['already_liked'] = already_liked
-		context.update(post)
 		context['tags'] = Tag.objects.get_tags_list()
+		context['citation'] = Citation.objects.get_random_citation()
+		context.update(post)
 		return context
 
 
